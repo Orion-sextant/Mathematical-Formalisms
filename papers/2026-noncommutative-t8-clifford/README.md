@@ -4,6 +4,7 @@
 
 **Jared D. Dunahay**
 *AEO Trivector LLC, Bedford, NH*
+ORCID: [0009-0004-5735-2872](https://orcid.org/0009-0004-5735-2872)
 
 ---
 

@@ -6,6 +6,7 @@ authors:
   - family-names: Dunahay
     given-names: Jared D.
     affiliation: "AEO Trivector LLC, Bedford, NH"
+    orcid: "https://orcid.org/0009-0004-5735-2872"
 repository-code: "https://github.com/Orion-sextant/Mathematical-Formalisms"
 license: MIT
 preferred-citation:
@@ -14,6 +15,7 @@ preferred-citation:
     - family-names: Dunahay
       given-names: Jared D.
       affiliation: "AEO Trivector LLC, Bedford, NH"
+      orcid: "https://orcid.org/0009-0004-5735-2872"
   title: "A Canonical Non-Commutative Deformation of T^8 Indexed by Cl(3,0): Spectrum, Pfaffian, and a Pythagorean Spectral Identity"
   year: 2026
   journal: "arXiv preprint (math-ph)"

@@ -38,6 +38,7 @@ dev = [
 
 [project.urls]
 "Repository" = "https://github.com/Orion-sextant/Mathematical-Formalisms"
+"Author" = "https://orcid.org/0009-0004-5735-2872"
 "Paper" = "https://github.com/Orion-sextant/Mathematical-Formalisms/tree/main/papers/2026-noncommutative-t8-clifford/paper"
 
 [build-system]

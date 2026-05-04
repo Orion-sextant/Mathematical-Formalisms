@@ -6,6 +6,7 @@ Mathematical work by **Jared D. Dunahay**
 [![Verify](https://github.com/Orion-sextant/Mathematical-Formalisms/actions/workflows/verify.yml/badge.svg)](https://github.com/Orion-sextant/Mathematical-Formalisms/actions/workflows/verify.yml)
 [![License: MIT](https://img.shields.io/badge/code-MIT-yellow.svg)](LICENSE)
 [![Papers: CC BY 4.0](https://img.shields.io/badge/papers-CC%20BY%204.0-lightgrey.svg)](LICENSE)
+[![ORCID](https://img.shields.io/badge/ORCID-0009-0004-5735-2872-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0004-5735-2872)
 
 ---
 
@@ -80,6 +81,7 @@ See `LICENSE` for full text.
 
 **Jared D. Dunahay**
 AEO Trivector LLC, Bedford, NH
+ORCID: [0009-0004-5735-2872](https://orcid.org/0009-0004-5735-2872)
 
 ## Archival
 

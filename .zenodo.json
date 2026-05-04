@@ -1,0 +1,25 @@
+{
+  "title": "Mathematical Formalisms",
+  "description": "Public companion code and verification suites for mathematical-physics papers by Jared D. Dunahay (AEO Trivector LLC). The first paper in this monorepo establishes a canonical noncommutative deformation of the 8-torus indexed by the Clifford algebra Cl(3,0), with closed-form spectrum, Pfaffian, Frobenius decomposition, a Pythagorean spectral identity, and a Lambert-W localization. The repository is structured to admit additional papers under self-contained subdirectories, each with its own theorem/code/test traceability map and deterministic reproduction script.",
+  "creators": [
+    {
+      "name": "Dunahay, Jared D.",
+      "affiliation": "AEO Trivector LLC, Bedford, NH",
+      "orcid": "0009-0004-5735-2872"
+    }
+  ],
+  "keywords": [
+    "mathematical physics",
+    "noncommutative geometry",
+    "operator algebras",
+    "Clifford algebra",
+    "Pfaffian",
+    "Lambert-W function",
+    "spectral theory",
+    "noncommutative torus"
+  ],
+  "license": "MIT",
+  "upload_type": "software",
+  "access_right": "open",
+  "language": "eng"
+}
