@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+title: "Mathematical Formalisms"
+message: "Please cite the specific paper this software accompanies. See individual paper subdirectories for paper citations."
+type: software
+authors:
+  - family-names: Dunahay
+    given-names: Jared D.
+    affiliation: "AEO Trivector LLC, Bedford, NH"
+repository-code: "https://github.com/Orion-sextant/Mathematical-Formalisms"
+license: MIT
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Dunahay
+      given-names: Jared D.
+      affiliation: "AEO Trivector LLC, Bedford, NH"
+  title: "A Canonical Non-Commutative Deformation of T^8 Indexed by Cl(3,0): Spectrum, Pfaffian, and a Pythagorean Spectral Identity"
+  year: 2026
+  journal: "arXiv preprint (math-ph)"
+keywords:
+  - mathematical physics
+  - noncommutative geometry
+  - operator algebras
+  - Clifford algebra
+  - Pfaffian
+  - Lambert-W function

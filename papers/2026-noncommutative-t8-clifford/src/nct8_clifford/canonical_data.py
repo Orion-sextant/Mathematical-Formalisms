@@ -1,0 +1,190 @@
+"""
+canonical_data: The canonical noncommutative deformation matrix Theta_can,
+its supporting structures, and Pfaffian/trace-image computations.
+
+This module establishes the mathematical objects defined in section 2 of the paper:
+
+    Theta_can in so(8), parameterized by (mu, Omega, beta) with
+        mu    = W(1)            (Lambert-W fixed point)
+        Omega = sqrt(1 - mu^2)  (spinor complement)
+        beta  = phi^{-1} / 3    (inverse golden third)
+
+and the auxiliary computational machinery used throughout: a numerically
+stable Pfaffian (Parlett-Reid skew-Hessenberg reduction), trace-image
+generators of K_0, and the analytical four-matching expansion of
+Pf(Theta_can).
+
+Author: Jared D. Dunahay (AEO Trivector LLC).
+License: MIT.
+"""
+
+from __future__ import annotations
+
+import numpy as np
+from scipy.special import lambertw
+from itertools import combinations
+
+# ---------------------------------------------------------------------
+# Constants
+# ---------------------------------------------------------------------
+
+mu: float    = float(lambertw(1).real)        # 0.567143...  Lambert-W fixed point
+phi: float   = (1.0 + np.sqrt(5.0)) / 2.0     # golden ratio
+Omega: float = float(np.sqrt(1.0 - mu**2))    # 0.823619...  sqrt(1 - mu^2)
+beta: float  = (1.0 / phi) / 3.0              # 0.206011...  phi^{-1} / 3
+
+
+# ---------------------------------------------------------------------
+# J: cyclic-symmetric antisymmetric generator on R^3
+# ---------------------------------------------------------------------
+# J is the unique (up to sign) cyclic-invariant antisymmetric 3x3 matrix,
+# normalized so Spec(J) = {0, +i, -i}. Geometrically, J generates rotation
+# around the diagonal axis (1, 1, 1) / sqrt(3) in R^3.
+
+J: np.ndarray = (1.0 / np.sqrt(3.0)) * np.array([
+    [ 0, -1,  1],
+    [ 1,  0, -1],
+    [-1,  1,  0],
+], dtype=float)
+
+
+# ---------------------------------------------------------------------
+# Canonical deformation matrix Theta_can in so(8)
+# ---------------------------------------------------------------------
+
+def construct_theta_canonical() -> np.ndarray:
+    """Construct Theta_can per Definition 2.1 of the paper.
+
+    Index conventions (Cl(3,0) grade decomposition 1+3+3+1):
+      Index 0     : grade 0  (scalar)
+      Indices 1-3 : grade 1  (vectors e_1, e_2, e_3)
+      Indices 4-6 : grade 2  (bivectors e_23, e_13, e_12)
+      Index 7     : grade 3  (pseudoscalar)
+
+    Nonzero upper-triangular entries:
+      Theta[0, 7]    = mu                        (scalar to pseudoscalar)
+      Theta[i, i+3]  = Omega for i = 1, 2, 3     (grade-1 to grade-2 cross-pairing)
+      Theta[1:4, 1:4] = beta * J                 (vector intra-block)
+      Theta[4:7, 4:7] = beta * J                 (bivector intra-block)
+
+    Returns the antisymmetrized 8x8 matrix.
+    """
+    Th = np.zeros((8, 8), dtype=float)
+    Th[0, 7] = mu
+    for i in range(3):
+        Th[1 + i, 4 + i] = Omega
+    Th[1:4, 1:4] = beta * J
+    Th[4:7, 4:7] = beta * J
+    upper = np.triu(Th, k=1)
+    return upper - upper.T
+
+
+# ---------------------------------------------------------------------
+# Pfaffian via Parlett-Reid skew-Hessenberg reduction
+# ---------------------------------------------------------------------
+
+def pfaffian(A: np.ndarray, tol: float = 1e-12) -> float:
+    """Pfaffian of an antisymmetric matrix A.
+
+    Uses Parlett-Reid reduction to skew-Hessenberg form, with partial
+    pivoting for stability. Reference: Wimmer, ACM TOMS 2012.
+
+    Returns 0 if A has odd dimension, or if a full-rank reduction fails.
+    """
+    A = np.array(A, dtype=float).copy()
+    n = A.shape[0]
+    if A.shape != (n, n):
+        raise ValueError(f"matrix is not square: shape {A.shape}")
+    if not np.allclose(A, -A.T, atol=1e-10):
+        raise ValueError("matrix is not antisymmetric")
+    if n % 2:
+        return 0.0
+    pf = 1.0
+    for i in range(0, n - 1, 2):
+        col = A[i + 1:, i]
+        if np.max(np.abs(col)) < tol:
+            return 0.0
+        k_local = int(np.argmax(np.abs(col)))
+        k = i + 1 + k_local
+        if k != i + 1:
+            A[[i + 1, k], :] = A[[k, i + 1], :]
+            A[:, [i + 1, k]] = A[:, [k, i + 1]]
+            pf = -pf
+        pf *= A[i, i + 1]
+        if i + 2 < n:
+            tau = A[i + 2:, i] / A[i + 1, i]
+            v = A[i + 1, i + 2:].copy()
+            outer = np.outer(tau, v)
+            A[i + 2:, i + 2:] -= outer - outer.T
+            A[i + 2:, i] = 0.0
+            A[i, i + 2:] = 0.0
+    return pf
+
+
+# ---------------------------------------------------------------------
+# Trace-image generators of K_0
+# ---------------------------------------------------------------------
+
+def k_theory_spectrum(Theta: np.ndarray) -> dict:
+    """All Pfaffians of even-sized principal minors of Theta.
+
+    For T^n_Theta with irrational entries, the trace tau_*: K_0 -> R has
+    image generated by 1 and the Pfaffians of all even-sized principal
+    minors of Theta (cf. Elliott; Pimsner-Voiculescu; Rieffel).
+
+    Returns {2k: [(subset, Pf(Theta|subset)), ...]} for k = 1, ..., n/2.
+    """
+    n = Theta.shape[0]
+    out: dict = {}
+    for k in range(2, n + 1, 2):
+        items = []
+        for sub in combinations(range(n), k):
+            M = Theta[np.ix_(sub, sub)]
+            items.append((sub, pfaffian(M)))
+        out[k] = items
+    return out
+
+
+def trace_image_generators(Theta: np.ndarray, dedupe_tol: float = 1e-10) -> dict:
+    """Distinct |Pf| values appearing across even-sized principal minors.
+
+    These are the candidate generators of tau_*(K_0) as a subgroup of R.
+    Returns {0: [1.0], 2k: [sorted list of distinct |Pf| values]}.
+    """
+    n = Theta.shape[0]
+    out: dict = {0: [1.0]}
+    for k in range(2, n + 1, 2):
+        seen: list = []
+        for sub in combinations(range(n), k):
+            M = Theta[np.ix_(sub, sub)]
+            v = abs(pfaffian(M))
+            if v < dedupe_tol:
+                continue
+            if not any(abs(v - s) < dedupe_tol for s in seen):
+                seen.append(v)
+        out[k] = sorted(seen, reverse=True)
+    return out
+
+
+# ---------------------------------------------------------------------
+# Analytical Pfaffian via four-matching expansion
+# ---------------------------------------------------------------------
+
+def analytical_pfaffian_matchings():
+    """Pfaffian of Theta_can as a sum over the 4 nonzero perfect matchings
+    of its support graph, with explicit signs.
+
+    Returns (sum, [contribution_A, contribution_B, contribution_C, contribution_D]).
+
+    Match A: {(0,7), (1,4), (2,5), (3,6)}            -- product mu * Omega^3
+    Match B: {(0,7), (1,4), (2,3), (5,6)}            -- mu * Omega * (beta*J[0,1])^2
+    Match C: {(0,7), (2,5), (1,3), (4,6)}            -- mu * Omega * (beta*J[0,2])^2
+    Match D: {(0,7), (3,6), (1,2), (4,5)}            -- mu * Omega * (beta*J[1,2])^2
+
+    Used as an independent symbolic check on Theorem 3.1.
+    """
+    val_A = -1 * mu * Omega ** 3                                    # 9 inversions
+    val_B = +1 * mu * Omega * (beta * J[0, 1]) ** 2                 # 8 inversions
+    val_C = +1 * mu * Omega * (beta * J[0, 2]) ** 2
+    val_D = +1 * mu * Omega * (beta * J[1, 2]) ** 2
+    return val_A + val_B + val_C + val_D, [val_A, val_B, val_C, val_D]

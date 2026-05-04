@@ -1,0 +1,15 @@
+[project]
+name = "mathematical-formalisms-meta"
+version = "0.0.0"
+description = "Meta-package for Mathematical Formalisms by Jared D. Dunahay (development tooling only; install individual papers from papers/*/)"
+authors = [{name = "Jared D. Dunahay", email = "jared@aeotrivector.ai"}]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.10"
+
+[project.urls]
+"Repository" = "https://github.com/Orion-sextant/Mathematical-Formalisms"
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"

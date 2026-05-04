@@ -1,0 +1,52 @@
+[project]
+name = "nct8_clifford"
+version = "1.0.0"
+description = "Companion code for: A Canonical Non-Commutative Deformation of T^8 Indexed by Cl(3,0). Spectrum, Pfaffian, and a Pythagorean Spectral Identity."
+authors = [
+    {name = "Jared D. Dunahay", email = "jared@aeotrivector.ai"},
+]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = [
+    "noncommutative-geometry",
+    "operator-algebras",
+    "Clifford-algebra",
+    "Pfaffian",
+    "Lambert-W",
+    "mathematical-physics",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+]
+
+[project.urls]
+"Repository" = "https://github.com/Orion-sextant/Mathematical-Formalisms"
+"Paper" = "https://github.com/Orion-sextant/Mathematical-Formalisms/tree/main/papers/2026-noncommutative-t8-clifford/paper"
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"
