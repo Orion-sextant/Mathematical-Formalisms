@@ -7,6 +7,7 @@ authors:
     given-names: Jared D.
     affiliation: "AEO Trivector LLC, Bedford, NH"
     orcid: "https://orcid.org/0009-0004-5735-2872"
+    email: jared@trivector.ai
 identifiers:
   - type: doi
     value: 10.5281/zenodo.20031519
@@ -23,6 +24,7 @@ preferred-citation:
       given-names: Jared D.
       affiliation: "AEO Trivector LLC, Bedford, NH"
       orcid: "https://orcid.org/0009-0004-5735-2872"
+      email: jared@trivector.ai
   title: "A Canonical Non-Commutative Deformation of T^8 Indexed by Cl(3,0): Spectrum, Pfaffian, and a Pythagorean Spectral Identity"
   year: 2026
   journal: "arXiv preprint (math-ph)"

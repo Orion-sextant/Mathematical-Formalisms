@@ -2,7 +2,7 @@
 name = "mathematical-formalisms-meta"
 version = "0.0.0"
 description = "Meta-package for Mathematical Formalisms by Jared D. Dunahay (development tooling only; install individual papers from papers/*/)"
-authors = [{name = "Jared D. Dunahay", email = "jared@aeotrivector.ai"}]
+authors = [{name = "Jared D. Dunahay", email = "jared@trivector.ai"}]
 license = "MIT"
 readme = "README.md"
 requires-python = ">=3.10"

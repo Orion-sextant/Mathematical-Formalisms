@@ -3,7 +3,7 @@ name = "nct8_clifford"
 version = "1.0.0"
 description = "Companion code for: A Canonical Non-Commutative Deformation of T^8 Indexed by Cl(3,0). Spectrum, Pfaffian, and a Pythagorean Spectral Identity."
 authors = [
-    {name = "Jared D. Dunahay", email = "jared@aeotrivector.ai"},
+    {name = "Jared D. Dunahay", email = "jared@trivector.ai"},
 ]
 license = "MIT"
 readme = "README.md"
