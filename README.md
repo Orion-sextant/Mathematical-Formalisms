@@ -7,6 +7,7 @@ Mathematical work by **Jared D. Dunahay**
 [![License: MIT](https://img.shields.io/badge/code-MIT-yellow.svg)](LICENSE)
 [![Papers: CC BY 4.0](https://img.shields.io/badge/papers-CC%20BY%204.0-lightgrey.svg)](LICENSE)
 [![ORCID](https://img.shields.io/badge/ORCID-0009-0004-5735-2872-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0004-5735-2872)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20031519.svg)](https://doi.org/10.5281/zenodo.20031519)
 
 ---
 
@@ -16,7 +17,7 @@ This repository is the public companion to mathematical papers and formalisms by
 
 | Year | Title | Status | Code | arXiv | DOI |
 |------|-------|--------|------|-------|-----|
-| 2026 | A Canonical Non-Commutative Deformation of $\mathbb{T}^8$ Indexed by $\mathrm{Cl}(3,0)$: Spectrum, Pfaffian, and a Pythagorean Spectral Identity | Submitted | [`papers/2026-noncommutative-t8-clifford/`](papers/2026-noncommutative-t8-clifford/) | *(pending)* | *(pending)* |
+| 2026 | A Canonical Non-Commutative Deformation of $\mathbb{T}^8$ Indexed by $\mathrm{Cl}(3,0)$: Spectrum, Pfaffian, and a Pythagorean Spectral Identity | Submitted | [`papers/2026-noncommutative-t8-clifford/`](papers/2026-noncommutative-t8-clifford/) | *(pending)* | [10.5281/zenodo.20031520](https://doi.org/10.5281/zenodo.20031520) |
 
 Each paper directory contains a self-contained README with the theorem-claim-test traceability map, installation, and reproduction instructions.
 
@@ -85,4 +86,11 @@ ORCID: [0009-0004-5735-2872](https://orcid.org/0009-0004-5735-2872)
 
 ## Archival
 
-Tagged releases are archived to Zenodo, which since November 2024 automatically deposits each release into Software Heritage. This provides each release with both a citable DOI and a persistent SWHID for long-term source preservation.
+Tagged releases are archived on [Zenodo](https://zenodo.org/), which automatically deposits each release into the [Software Heritage Archive](https://www.softwareheritage.org/). Each release carries both a citable DOI and a persistent SWHID for long-term source preservation.
+
+| Identifier | Type | Points to |
+|---|---|---|
+| [10.5281/zenodo.20031519](https://doi.org/10.5281/zenodo.20031519) | Concept DOI | All versions of this repository |
+| [10.5281/zenodo.20031520](https://doi.org/10.5281/zenodo.20031520) | Version DOI | v1.0.0 specifically |
+
+When citing this software, prefer the **concept DOI**, which always resolves to the latest version. When citing a specific snapshot used to reproduce results, use the corresponding version DOI.

@@ -100,6 +100,8 @@ The verbs used throughout this repository are deliberate: the code **verifies**,
 }
 ```
 
+This software is archived at Zenodo with concept DOI [10.5281/zenodo.20031519](https://doi.org/10.5281/zenodo.20031519). The v1.0.0 release is pinned at [10.5281/zenodo.20031520](https://doi.org/10.5281/zenodo.20031520).
+
 ## License
 
 - **Code** (`src/`, `tests/`, `examples/`): MIT (see repository-root `LICENSE`).

@@ -7,6 +7,13 @@ authors:
     given-names: Jared D.
     affiliation: "AEO Trivector LLC, Bedford, NH"
     orcid: "https://orcid.org/0009-0004-5735-2872"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.20031519
+    description: Concept DOI (all versions)
+  - type: doi
+    value: 10.5281/zenodo.20031520
+    description: v1.0.0 release
 repository-code: "https://github.com/Orion-sextant/Mathematical-Formalisms"
 license: MIT
 preferred-citation:
